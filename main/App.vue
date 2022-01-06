@@ -27,7 +27,7 @@
             <div class="my-article__desc">{{ item.description }}</div>
             <!-- 发布时间 -->
             <div class="my-article__time">
-              Posted by SL on{{ formatDate(item.timestamp) }}
+              Posted by SL on {{ formatDate(item.timestamp) }}
             </div>
           </div>
           <hr class="my-hr" v-if="index !== articleList.length - 1" />

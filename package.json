@@ -1,6 +1,5 @@
 {
   "name": "sunli-blog-front",
-  "title": "SL BLOG",
   "version": "1.0.0",
   "author": {
     "name": "Mr.chen",
@@ -14,7 +13,7 @@
   "description": "SL BLOG DESCRIPTION",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/publish",
     "preview": "vite preview"
   },
   "dependencies": {
