@@ -1,0 +1,31 @@
+{
+  "name": "sunli-blog-front",
+  "title": "SL BLOG",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mr.chen",
+    "email": "Chen.dezhen@outlook.com",
+    "url": "https://chenxiaosong1996.github.io"
+  },
+  "keywords": [
+    "孙莉",
+    "孙莉的博客"
+  ],
+  "description": "SL BLOG DESCRIPTION",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.25",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "node-sass": "^7.0.1",
+    "sass": "^1.45.2",
+    "sass-loader": "^12.4.0",
+    "vite": "^2.7.2"
+  }
+}
