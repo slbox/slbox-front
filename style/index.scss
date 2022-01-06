@@ -1,15 +1,16 @@
 :root {
-  // --color-primary: #67aef7;
   --color-primary: #0085a1;
   --color-success: #9ed5a3;
   --color-warning: #f9b552;
   --color-danger: #fc7373;
-  --color-info: #cccccc;
-  --color-text-secondary: #999999;
-  --color-text-regular: #666666;
-  --color-text-primary: #333333;
-  --color-text-placeholder: #cccccc;
-  --border-color-base: #cccccc;
+  --color-info: #ccc;
+  --color-light: #fff;
+  --color-dark: #000;
+  --color-text-secondary: #999;
+  --color-text-regular: #666;
+  --color-text-primary: #333;
+  --color-text-placeholder: #ccc;
+  --border-color-base: #eee;
   --border-color-light: #dcdcdc;
   --border-color-lighter: #ececec;
   --border-color-extra-light: #fcfcfc;
@@ -28,7 +29,7 @@ body {
   height: 100%;
   color: var(--color-text-regular);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.6;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial,
     "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei",
@@ -45,6 +46,30 @@ body {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
+}
+
+::selection {
+  color: var(--color-light);
+  text-shadow: none;
+  background: var(--color-primary);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+ol,
+ul,
+dl {
+  list-style: none;
+}
+
+blockquote {
+  font: 14px/22px normal helvetica, sans-serif;
+  margin: 15px 0;
+  padding: 15px 10px;
+  border-left: 5px solid var(--color-text-placeholder);
+  background-color: var(--background-color-base);
 }
 
 // ::-webkit-scrollbar {

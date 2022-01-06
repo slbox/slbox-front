@@ -1,49 +1,56 @@
 <template>
   <!-- 导航栏 -->
   <Nav></Nav>
-  <div style="max-height: 650px; overflow: hidden">
-    <img
-      src="https://chenxiaosong-1257029795.cos.ap-shanghai.myqcloud.com/images%2Fpexels-pavel-danilyuk-6443072.jpg"
-      style="width: 100%"
-    />
+  <!-- 顶部内容 -->
+  <div class="my-header">
+    <h2>SL BLOG</h2>
+    <h5>The harder you work, the more successful you will be</h5>
   </div>
-  <!-- 文章列表 -->
-  <template v-for="(item, index) in articleList" :key="'article-item' + index">
-    <el-card shadow="hover" class="cursor-pointer hover:text-theme mb-20px">
-      <div
-        class="flex flex-row <md:flex-col items-center <md:items-start justify-start"
-      >
-        <div
-          v-if="item.cover"
-          class="w-158px flex flex-row items-center justify-center border-1px border-gray-200 border-opacity-75 rounded-md min-h-90px max-h-120px <md:hidden"
+  <!-- 主体内容 -->
+  <ScrollAnim animationType="up">
+    <Content class="my-body">
+      <!-- 文章列表 -->
+      <div>
+        <template
+          v-for="(item, index) in articleList"
+          :key="'article-item' + index"
         >
-          <img :src="item.cover" class="inline-block max-w-150px max-h-118px" />
-        </div>
-        <div :class="{ 'pl-15px <md:pl-0px': item.cover }">
-          <h4 class="text-xl <md:text-lg" :title="item.title">
-            {{ item.title }}
-          </h4>
           <div
-            class="truncate whitespace-normal line-clamp-2 !text-blue-gray-700 my-10px"
-            :title="item.description"
+            class="my-article"
+            :style="{ 'margin-top': index > 0 ? '20px' : '0px' }"
           >
-            {{ item.description }}
+            <!-- 标题 -->
+            <div class="my-article__title">{{ item.title }}</div>
+            <!-- 副标题 -->
+            <div class="my-article__subtitle">{{ item.tags }}</div>
+            <!-- 内容简介 -->
+            <div class="my-article__desc">{{ item.description }}</div>
+            <!-- 发布时间 -->
+            <div class="my-article__time">
+              Posted by SL on{{ formatDate(item.timestamp) }}
+            </div>
           </div>
-          <div class="-m-5px">
-            <template
-              v-for="(tag, tagIndex) in item.tags.split(',')"
-              :key="index + 'tag-item' + tagIndex"
-            >
-              <el-tag size="small" class="m-5px">{{ tag }}</el-tag>
-            </template>
-          </div>
-          <div class="!text-blue-gray-700 text-opacity-75 mt-10px">
-            {{ item.timestamp }}
-          </div>
+          <hr class="my-hr" v-if="index !== articleList.length - 1" />
+        </template>
+      </div>
+      <div class="my-info">
+        <h5 class="my-info__title">ABOUT ME</h5>
+        <img src="/assets/img/avator.jpg" class="my-info__avator" />
+        <p class="my-info__desc">
+          The harder you work, the more successful you will be
+        </p>
+        <div class="my-info__tools">
+          <i
+            class="iconfont icon-github-fill"
+            @click="pathRoute('https://github.com/slbox')"
+          ></i>
+          <i class="iconfont icon-google-circle-fill"></i>
+          <i class="iconfont icon-dingtalk-circle-fill"></i>
+          <i class="iconfont icon-twitter-circle-fill"></i>
         </div>
       </div>
-    </el-card>
-  </template>
+    </Content>
+  </ScrollAnim>
   <!-- 返回顶部 -->
   <BackTop></BackTop>
 </template>
@@ -53,6 +60,8 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 import Nav from "@/components/partial/Nav.vue";
 import BackTop from "@/components/partial/BackTop.vue";
+import Content from "@/components/partial/Content.vue";
+import ScrollAnim from "@/components/ScrollAnim.vue";
 const store = useStore();
 
 window.onscroll = function () {
@@ -71,4 +80,158 @@ const articleList = computed(() => {
   return store.state.articleList;
 });
 store.dispatch("GetArticleList");
+
+const formatDate = (time) => {
+  return moment(time).format("dddd, MMMM Do YYYY");
+};
+
+const pathRoute = (route) => {
+  location.href = route;
+};
 </script>
+
+<style lang="scss" scoped>
+.my-header {
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: url("https://chenxiaosong-1257029795.cos.ap-shanghai.myqcloud.com/images/pexels-pavel-danilyuk-6443072.jpg")
+    no-repeat center;
+  background-size: cover;
+  padding: 200px 50px;
+
+  h2 {
+    margin-top: 50px;
+    font-size: 54px;
+  }
+
+  h5 {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-style: italic;
+    font-family: Lora, "Times New Roman", serif;
+  }
+}
+
+.my-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.my-info {
+  width: 200px;
+  flex: 0 0 200px;
+  padding-left: 20px;
+
+  &__title {
+    font-size: 16px;
+    color: var(--color-text-primary);
+    margin-bottom: 20px;
+  }
+
+  &__avator {
+    width: 180px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    filter: blur(1px);
+  }
+
+  &__desc {
+    font-style: italic;
+    font-family: Lora, "Times New Roman", serif;
+    margin-bottom: 20px;
+  }
+
+  &__tools {
+    .iconfont {
+      font-size: 30px;
+      margin-right: 20px;
+      cursor: pointer;
+      &:hover {
+        color: var(--color-primary);
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .my-body {
+    display: block;
+  }
+  .my-info {
+    display: none;
+  }
+}
+.my-hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid var(--border-color-base);
+}
+.my-article {
+  cursor: pointer;
+  &__title {
+    color: var(--color-text-primary);
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  &__subtitle {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  &__desc {
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+  }
+
+  &__time {
+    cursor: auto;
+    font-size: 18px;
+    font-style: italic;
+    font-family: Lora, "Times New Roman", serif;
+  }
+
+  &:hover {
+    .my-article__title,
+    .my-article__subtitle,
+    .my-article__desc {
+      color: var(--color-primary);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .my-header {
+    padding: 160px 10px;
+    h2 {
+      font-size: 24px;
+    }
+
+    h5 {
+      font-size: 14px;
+    }
+  }
+
+  .my-article {
+    &__title {
+      font-size: 18px;
+    }
+    &__subtitle {
+      font-size: 14px;
+    }
+    &__time {
+      font-size: 16px;
+    }
+  }
+}
+</style>
