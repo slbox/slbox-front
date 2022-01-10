@@ -7,7 +7,7 @@
     <h5>The harder you work, the more successful you will be</h5>
   </div>
   <!-- 主体内容 -->
-  <ScrollAnim animationType="up">
+  <ScrollAnim animationType="up" @init="initGitalk()">
     <Content>
       <blockquote>
         <p>
@@ -36,6 +36,9 @@
         <li><a href="https://github.com">GitHub</a></li>
         <li><a href="https://github.com/slbox">孙小莉</a></li>
       </ul>
+
+      <!-- 评论系统 -->
+      <div ref="gitalkContainerRef"></div>
     </Content>
   </ScrollAnim>
 
@@ -45,11 +48,14 @@
 
 <script setup>
 import { useStore } from "vuex";
+import { defaultConf } from "@/config";
+import { ref, nextTick, onMounted } from "vue";
 import Nav from "@/components/partial/Nav.vue";
 import BackTop from "@/components/partial/BackTop.vue";
 import Content from "@/components/partial/Content.vue";
 import ScrollAnim from "@/components/ScrollAnim.vue";
 const store = useStore();
+const gitalkContainerRef = ref("gitalkContainerRef");
 
 window.onscroll = function () {
   //为了保证兼容性，这里取两个值，哪个有值取哪一个
@@ -58,6 +64,30 @@ window.onscroll = function () {
     "SET_SCROLL_TOP",
     document.documentElement.scrollTop || document.body.scrollTop
   );
+};
+
+// 评论区初始化
+const initGitalk = () => {
+  nextTick(() => {
+    // 主要是针对翻页时，清空原来的内容
+    if (gitalkContainerRef.value) {
+      gitalkContainerRef.value.innerHTML = "";
+    }
+    // 重新挂载评论功能
+    const gitalk = new Gitalk({
+      clientID: defaultConf.gitalk.clientId,
+      clientSecret: defaultConf.gitalk.clientSecret,
+      repo: defaultConf.gitalk.repo,
+      owner: defaultConf.gitalk.owner,
+      admin: defaultConf.gitalk.admin,
+      labels: [],
+      id: `slbox.github.io`, // 如果要每篇文章都使用独立评论 需要改为 location.hash
+      // 或者md5(location.hash)注意md5包需要单独引入
+      distractionFreeMode: false, // 无干扰模式
+      perPage: 50,
+    });
+    gitalk.render(gitalkContainerRef.value);
+  });
 };
 </script>
 

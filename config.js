@@ -9,5 +9,13 @@ export const defaultConf = {
       { name: "ABOUT", path: "/slblog/about" },
     ],
   },
+  // gitalk 配置
+  gitalk: {
+    clientId: "49eecdd5630a0f171ead",
+    clientSecret: "7e90b607b82e3a48f95684b371e6016feeaa22a9",
+    repo: "gitalk",
+    owner: "slbox",
+    admin: ["slbox"],
+  },
 };
 export default defaultConf;
