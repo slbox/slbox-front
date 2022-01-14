@@ -16,7 +16,7 @@ export default defineConfig({
     open: true,
     host: "0.0.0.0",
     port: 4200,
-    https: true,
+    https: false,
   },
   build: {
     // 浏览器兼容性 ‘esnext’ | 'modules'

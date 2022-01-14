@@ -1,7 +1,8 @@
 export const defaultConf = {
   base: "/slblog/",
-  baseApiUrl: "https://chenxiaosong1996.top",
+  baseApiUrl: "https://chenxiaosong1996.top/api",
   baseOssUrl: "https://chenxiaosong-1257029795.cos.ap-shanghai.myqcloud.com",
+  baseToken: "61e39d8ff7b7ac0f984b895fa42d02a9",
   header: {
     logo: "SL BLOG",
     menus: [
