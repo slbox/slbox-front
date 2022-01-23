@@ -25,6 +25,7 @@ export default defineConfig({
       input: {
         index: path.resolve(__dirname, "index.html"),
         about: path.resolve(__dirname, "about/index.html"),
+        detail: path.resolve(__dirname, "detail/index.html"),
       },
     },
   },

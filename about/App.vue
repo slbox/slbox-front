@@ -35,6 +35,8 @@
       <ul>
         <li><a href="https://github.com">GitHub</a></li>
         <li><a href="https://github.com/slbox">孙小莉</a></li>
+        <li><a href="https://github.com/chenxiaosong1996">陈小松</a></li>
+        <li><a href="https://chenxiaosong1996.top/admin/">Admin</a></li>
       </ul>
 
       <!-- 评论系统 -->

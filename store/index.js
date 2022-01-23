@@ -41,7 +41,7 @@ const store = createStore({
         return;
       }
       return http
-        .get(`/article/list?owner=cc`)
+        .get(`article/blogarticle/list?owner=sl`)
         .then((data) => {
           //打印返回的json数据
           commit("SET_ARTICLE_LIST", data?.data || []);
@@ -61,7 +61,7 @@ const store = createStore({
         return;
       }
       return http
-        .get(`/article/detail/${id}`)
+        .get(`/article/blogarticle/detail/${id}`)
         .then((data) => {
           //打印返回的json数据
           commit("SET_ARTICLE_DETAIL", data?.data || null);
