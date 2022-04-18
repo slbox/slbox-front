@@ -283,7 +283,7 @@ onMounted(() => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: url("https://chenxiaosong-1257029795.cos.ap-shanghai.myqcloud.com/images/pexels-pavel-danilyuk-6443072.jpg")
+  background: url("https://chenxiaosong1996.top/cloudobs/images/pexels-pavel-danilyuk-6443072.jpg")
     no-repeat center;
   background-size: cover;
   padding: 200px 50px;
